@@ -7,6 +7,7 @@ class GamePageProvider extends ChangeNotifier {
   ));
 
   List? questions;
+  int index = 0;
   final BuildContext context;
   GamePageProvider({required this.context}) {
     _getQuestion();
@@ -23,6 +24,19 @@ class GamePageProvider extends ChangeNotifier {
 
     var data = response.data;
     questions = data['results'];
-    print(questions);
+    // call notifyListeners() to update the UI
+    notifyListeners();
+  }
+
+  String getQuestionText() {
+    return questions![index]['question'];
+  }
+
+  void getQuestionAnswer(String answer) {
+    bool isCorrect = questions![index]['correct_answer'] == answer;
+    index++;
+    print(isCorrect ? "Correct" : "Wrong");
+    notifyListeners();
+    // return isCorrect;
   }
 }
