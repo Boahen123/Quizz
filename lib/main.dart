@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz/pages/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Quizz',
       theme: ThemeData(
+        fontFamily: 'VictorMono',
+        scaffoldBackgroundColor: Colors.deepPurple[900],
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Scaffold(),
+      home: const Home(),
     );
   }
 }
