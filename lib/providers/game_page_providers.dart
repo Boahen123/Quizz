@@ -8,6 +8,7 @@ class GamePageProvider extends ChangeNotifier {
 
   List? questions;
   int index = 0;
+  int correctScore = 0;
   final BuildContext context;
   GamePageProvider({required this.context}) {
     _getQuestion();
@@ -32,11 +33,51 @@ class GamePageProvider extends ChangeNotifier {
     return questions![index]['question'];
   }
 
-  void getQuestionAnswer(String answer) {
+  void getQuestionAnswer(String answer) async {
     bool isCorrect = questions![index]['correct_answer'] == answer;
+    correctScore += isCorrect ? 1 : 0;
     index++;
-    print(isCorrect ? "Correct" : "Wrong");
-    notifyListeners();
-    // return isCorrect;
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              backgroundColor: isCorrect ? Colors.green : Colors.red,
+              title: Icon(
+                isCorrect ? Icons.check_circle : Icons.cancel_sharp,
+                color: Colors.white,
+                size: 30,
+              ),
+              content: Text(
+                isCorrect ? 'Correct' : 'Wrong',
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                textAlign: TextAlign.center,
+              ));
+        });
+    await Future.delayed(const Duration(seconds: 1));
+    Navigator.pop(context);
+    if (index == 9) {
+      endGame();
+    } else {
+      notifyListeners();
+    }
+  }
+
+  Future<void> endGame() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.blue,
+            title: const Text(
+              "End Game",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Text('Score: $correctScore/10'),
+          );
+        });
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.pop(context);
+    // Navigator.pop(context);
   }
 }

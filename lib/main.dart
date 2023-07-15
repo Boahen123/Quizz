@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizz/pages/home.dart';
+import 'package:quizz/pages/start.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: <String, WidgetBuilder>{
+        '/start': (BuildContext context) => const Start(),
+        '/home': (BuildContext context) => const Home(),
+      },
       title: 'Quizz',
       theme: ThemeData(
         fontFamily: 'VictorMono',
@@ -19,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const Start(),
     );
   }
 }
