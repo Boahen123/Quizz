@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-Widget gameTitle(double? deviceHeight, double? deviceWidth) {
+Widget gameTitle(double? deviceHeight, double? deviceWidth, double difficulty) {
+  List<String> difficultyList = ['Easy', 'Medium', 'Hard'];
   return Container(
     padding: EdgeInsets.symmetric(horizontal: deviceHeight! * 0.01),
-    child: const Column(
+    child: Column(
       children: [
         Center(
             child: Column(
           children: [
-            Text(
+            const Text(
               'Quizz',
               style: TextStyle(
                   fontSize: 30,
@@ -16,8 +17,8 @@ Widget gameTitle(double? deviceHeight, double? deviceWidth) {
                   color: Colors.white),
             ),
             Text(
-              'Easy',
-              style: TextStyle(
+              difficultyList[difficulty.toInt()],
+              style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w800,
                   color: Colors.white),

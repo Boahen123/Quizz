@@ -23,7 +23,6 @@ class _SliderWidgetState extends State<SliderWidget> {
           onChanged: (value) {
             setState(() {
               difficulty = value;
-              print(value);
             });
           },
           divisions: 2,
