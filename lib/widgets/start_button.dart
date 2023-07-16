@@ -26,6 +26,5 @@ class StartButton extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
