@@ -9,16 +9,18 @@ class GamePageProvider extends ChangeNotifier {
   List? questions;
   int index = 0;
   int correctScore = 0;
+  String difficulty;
   final BuildContext context;
-  GamePageProvider({required this.context}) {
-    _getQuestion();
+  GamePageProvider({required this.context, required this.difficulty}) {
+    _getQuestion(difficulty);
   }
 
-  Future<void> _getQuestion() async {
+  Future<void> _getQuestion(String difficulty) async {
+    print(difficulty);
     var response = await _dio.get('',
         queryParameters: <String, dynamic>{
           'amount': 10,
-          'difficulty': 'easy',
+          'difficulty': difficulty,
           'type': 'boolean'
         },
         options: Options(responseType: ResponseType.json));
@@ -31,6 +33,10 @@ class GamePageProvider extends ChangeNotifier {
 
   String getQuestionText() {
     return questions![index]['question'];
+  }
+
+  void moveToNextPage() {
+    Navigator.pop(context);
   }
 
   void getQuestionAnswer(String answer) async {
@@ -55,7 +61,7 @@ class GamePageProvider extends ChangeNotifier {
               ));
         });
     await Future.delayed(const Duration(seconds: 1));
-    Navigator.pop(context);
+    moveToNextPage();
     if (index == 9) {
       endGame();
     } else {
@@ -77,7 +83,6 @@ class GamePageProvider extends ChangeNotifier {
           );
         });
     await Future.delayed(const Duration(seconds: 2));
-    Navigator.pop(context);
-    // Navigator.pop(context);
+    moveToNextPage();
   }
 }

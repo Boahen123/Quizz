@@ -8,13 +8,16 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Object? difficultyLevel = ModalRoute.of(context)!.settings.arguments;
+    Map difficultyMap = difficultyLevel as Map;
     double? deviceHeight, deviceWidth;
 
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
-
+    print(difficultyMap['difficulty']);
     return ChangeNotifierProvider(
-        create: (context) => GamePageProvider(context: context),
+        create: (context) => GamePageProvider(
+            context: context, difficulty: difficultyMap['difficulty']),
         child: buildUI(deviceHeight, deviceWidth));
   }
 }

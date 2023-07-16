@@ -2,15 +2,23 @@
 
 A new Flutter project.
 
-## Getting Started
+# To use the provider package
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Setup the **ChangeNotifier** class by extending **ChangeNotifier**, this holds the state data and methods to modify the state.
+- To use setState inside a **ChangeNotifier**, define it within the class as <br/>
+  <code>
+  void setState(VoidCallback callback) {
+  callback(); <br>
+  notifyListeners(); <br>
+  }
+  </code>
+- Setup the **ChangeNofitierProvider** to enable state for the screen needed.
+- It is possible to Consume the state data in the **ChangeNotifierProvider** using **Consumer**
+- Consume it like so:
+  <code> <br>
+  Consumer<StartPageProvider>( <br>
+  &nbsp; builder: (context, provider, child) { <br>
+  &nbsp; return gameTitle(
+  deviceHeight, deviceWidth, provider.difficulty);
+  <br> },)
+  </code>
