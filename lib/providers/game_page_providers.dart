@@ -20,12 +20,13 @@ class GamePageProvider extends ChangeNotifier {
     var response = await _dio.get('',
         queryParameters: <String, dynamic>{
           'amount': 10,
-          'difficulty': difficulty,
+          'difficulty': 'easy',
           'type': 'boolean'
         },
         options: Options(responseType: ResponseType.json));
 
     var data = response.data;
+    print(data);
     questions = data['results'];
     // call notifyListeners() to update the UI
     notifyListeners();
