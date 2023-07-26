@@ -11,6 +11,9 @@ A trivia of ten questions per session. The questions are fetched from an API and
 
 ### Screenshots
 
+<img src="./assets/images/screenshot1.png" height="500"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="./assets/images/screenshot2.png" height="500">
+
 ### To use the provider package
 
 - Setup the **ChangeNotifier** class by extending **ChangeNotifier**, this holds the state data and methods to modify the state.
